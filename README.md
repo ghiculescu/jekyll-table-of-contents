@@ -1,6 +1,6 @@
 # jekyll-table-of-contents
 
-A simple JavaScript table of contents generator. Works well with [jekyll](https://github.com/mojombo/jekyll) static sites &mdash; for example, we are using it for our [help pages](http://help.payaus.com/).
+A simple JavaScript table of contents generator. Works well with [jekyll](https://github.com/mojombo/jekyll) static sites. At PayAus we are using it for our [help pages](http://help.payaus.com/).
 
 ## Usage
 
