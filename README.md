@@ -4,9 +4,11 @@ A simple JavaScript table of contents generator. Works well with [jekyll](https:
 
 ## Usage
 
-Reference `toc.js` in pages where you'd like a table of contents. The script looks for a
+Requires jQuery. Reference `toc.js` in pages where you'd like a table of contents. The script looks for:
 
-    <div class="toc"></div>
+```html
+<div class="toc"></div>
+```
 
 so place that div wherever you want your table of contents to appear.
 
@@ -32,6 +34,30 @@ Will render this table of contents:
 
 The table of contents is rendered as an `<ol>`, so you can change the number formatting using CSS.
 
+The script also adds an `<img>` tag next to each header. This uses the class `icon-arrow-up`, which if you're using [Bootstrap](http://twitter.github.io/bootstrap/), will be an arrow pointing to the top of the page. Clikcing that arrow will scroll you to the top, while clicking on a header will get a permanent link to that particular header (using `window.location.hash`). Set:
+
+```javascript
+var no_back_to_top_links = true // defaults to false
+```
+
+in the first line of the file if you don't want this. Otherwise, I suggest you use CSS that looks something like this so the icon and header are aligned nicely.
+
+```css
+.clickable-header {
+  cursor:pointer;
+}
+.clickable-header:hover {
+  text-decoration:underline;
+}
+.top-level-header {
+  display:inline;
+}
+.back-to-top {
+  margin-left:5px;
+  cursor:pointer;
+}
+```
+
 ## Copyright
 
-Copyright (c) 2013 Alex Ghiculescu. See LICENSE.txt for further details.
+See LICENSE.txt for further details. tl;dr go nuts.
