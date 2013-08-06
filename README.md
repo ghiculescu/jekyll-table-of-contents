@@ -34,7 +34,7 @@ Will render this table of contents:
 
 The table of contents is rendered as an `<ol>`, so you can change the number formatting using CSS.
 
-The script also adds an `<img>` tag next to each header. This uses the class `icon-arrow-up`, which if you're using [Bootstrap](http://twitter.github.io/bootstrap/), will be an arrow pointing to the top of the page. Clikcing that arrow will scroll you to the top, while clicking on a header will get a permanent link to that particular header (using `window.location.hash`). Set:
+The script also adds an `<i>` tag next to each header. This uses the class `icon-arrow-up`, which if you're using [Bootstrap](http://twitter.github.io/bootstrap/), will be an arrow pointing to the top of the page. Clicking that arrow will scroll you to the top, while clicking on a header will get a permanent link to that particular header (using `window.location.hash`). Set:
 
 ```javascript
 var no_back_to_top_links = true // defaults to false
@@ -60,4 +60,4 @@ in the first line of the file if you don't want this. Otherwise, I suggest you u
 
 ## Copyright
 
-See LICENSE.txt for further details. tl;dr go nuts.
+See LICENSE.txt for further details. But basically, do what you like with this.
