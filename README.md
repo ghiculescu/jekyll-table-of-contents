@@ -14,7 +14,7 @@ so place that div wherever you want your table of contents to appear.
 
 The script works by looking for headers (h1, h2, h3, h4, h5, h6) which have an `id`. An id is added automatically if you're using jekyll and [Markdown](http://daringfireball.net/projects/markdown/syntax#header).
 
-If you use redcarpet, you need to add :with_toc_data: to add HTML anchors to each header:
+Note: If you use redcarpet, you need to have the option _with_toc_data_ to add HTML anchors to each header:
 
 ```yaml
 markdown: redcarpet
