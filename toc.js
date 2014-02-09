@@ -1,6 +1,12 @@
 // https://github.com/ghiculescu/jekyll-table-of-contents
-$(document).ready(function() {
-  var no_back_to_top_links = false
+
+(function($){
+$.fn.JekyllToc = function(options) {
+  var defaults = {
+    text: 'Jump to...',
+    no_back_to_top_links: false
+  },
+  settings = $.extend(defaults, options);
 
   var headers = $('h1, h2, h3, h4, h5, h6').filter(function() {return this.id}), // get all headers with an ID
       output = $('.toc');
@@ -11,12 +17,13 @@ $(document).ready(function() {
   var highest_level = headers.map(function(_, ele) { return get_level(ele) }).get().sort()[0]
   var return_to_top = '<i class="icon-arrow-up back-to-top"> </i>'
 
-  var level = get_level(headers[0]), this_level, html = "<i>Jump to...</i> <ol>";
+  var jump_text = "" !== $('.toc').html() ? $('.toc').html() : '<i>'+settings.text+'</i>';
+  var level = get_level(headers[0]), this_level, html = jump_text + " <ol>";
   headers.on('click', function() {
-    if (!no_back_to_top_links) window.location.hash = this.id
+    if (!settings.no_back_to_top_links) window.location.hash = this.id
   }).addClass('clickable-header').each(function(_, header) {
     this_level = get_level(header);
-    if (!no_back_to_top_links && this_level === highest_level) {
+    if (!settings.no_back_to_top_links && this_level === highest_level) {
       $(header).addClass('top-level-header').after(return_to_top)
     }
     if (this_level === level) // same level as before; same indenting
@@ -28,11 +35,16 @@ $(document).ready(function() {
     level = this_level; // update for the next one
   });
   html += "</ol>";
-  if (!no_back_to_top_links) {
+  if (!settings.no_back_to_top_links) {
     $(document).on('click', '.back-to-top', function() {
       $(window).scrollTop(0)
       window.location.hash = ''
     })
   }
   output.hide().html(html).show('slow');
+};
+})(jQuery);
+
+$(document).ready(function() {
+  $().JekyllToc();
 });
