@@ -4,17 +4,22 @@ A simple JavaScript table of contents generator. Works well with [jekyll](https:
 
 ## Usage
 
-Requires jQuery. Reference `toc.js` in pages where you'd like a table of contents. The script looks for:
+The script requires the library jQuery. First, reference `toc.js` in templates where you would like to add the table of contents, and just add this script:
+
+```html
+<script type="text/javascript">
+    $().toc();
+</script>
+```
+
+Then add this tag wherever you want your table of contents to appear:
 
 ```html
 <div class="toc"></div>
 ```
+The script works by looking for headers (h1, h2, h3, h4, h5, h6) which have an `id`. An id is added automatically if you're using Jekyll and [Markdown](http://daringfireball.net/projects/markdown/syntax#header).
 
-so place that div wherever you want your table of contents to appear.
-
-The script works by looking for headers (h1, h2, h3, h4, h5, h6) which have an `id`. An id is added automatically if you're using jekyll and [Markdown](http://daringfireball.net/projects/markdown/syntax#header).
-
-Note: If you use redcarpet, you need to have the option _with_toc_data_ to add HTML anchors to each header:
+Note: If you use redcarpet, you need to have the option `with_toc_data` in order to add HTML anchors to each header:
 
 ```yaml
 markdown: redcarpet
@@ -40,15 +45,23 @@ Will render this table of contents:
       a. Note on Paragraph 2
       b. Note on Paragraph 4
 
-The table of contents is rendered as an `<ol>`, so you can change the number formatting using CSS.
-
-The script also adds an `<i>` tag next to each header. This uses the class `icon-arrow-up`, which if you're using [Bootstrap](http://twitter.github.io/bootstrap/), will be an arrow pointing to the top of the page. Clicking that arrow will scroll you to the top, while clicking on a header will get a permanent link to that particular header (using `window.location.hash`). Set:
+By default the table of contents is rendered as an `<ol>`, so you can change the number formatting using CSS.
+However you can use the `<ul>` tag, using the `listType` option:
 
 ```javascript
-var no_back_to_top_links = true // defaults to false
+  $().toc({ listType: 'ul' });
 ```
 
-in the first line of the file if you don't want this. Otherwise, I suggest you use CSS that looks something like this so the icon and header are aligned nicely.
+The script also adds an `<i>` tag next to each header. This uses the class `icon-arrow-up`, which if you're using [Bootstrap](http://twitter.github.io/bootstrap/), will be an arrow pointing to the top of the page.
+Clicking that arrow will scroll you to the top, while clicking on a header will get a permanent link to that particular header (using `window.location.hash`).
+
+If you don't want this feature, add this setting:
+
+```javascript
+  $().toc({ noBackToTopLinks: true });
+```
+
+Otherwise, I suggest you use CSS that looks something like this so the icon and header are aligned nicely.
 
 ```css
 .clickable-header {
@@ -64,6 +77,12 @@ in the first line of the file if you don't want this. Otherwise, I suggest you u
   margin-left:5px;
   cursor:pointer;
 }
+```
+
+Finally, you can also change the way the toc is displayed. If you want to deactivate the default effect, set it up like this:
+
+```javascript
+  $().toc({ showSpeed: 0 });
 ```
 
 ## Copyright
