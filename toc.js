@@ -3,7 +3,7 @@
   $.fn.toc = function(options) {
     var defaults = {
       noBackToTopLinks: false,
-      text: '<i>Jump to...<i>',
+      title: '<i>Jump to...</i>',
       listType: 'ol', // values: [ol|ul]
       showSpeed: 'slow'
     },
@@ -12,20 +12,22 @@
     var headers = $('h1, h2, h3, h4, h5, h6').filter(function() {
       // get all headers with an ID
       return this.id
-    }), output = $('.toc');
+    }), output = $(this);
     if (!headers.length || headers.length < 3 || !output.length) {
       return;
     }
   
     var get_level = function(ele) { return parseInt(ele.nodeName.replace("H", ""), 10) }
-    var highest_level = headers.map(function(_, ele) { return get_level(ele) }).get().sort()[0]
-    var return_to_top = '<i class="icon-arrow-up back-to-top"> </i>'
+    var highest_level = headers.map(function(_, ele) { return get_level(ele) }).get().sort()[0];
+    var return_to_top = '<i class="icon-arrow-up back-to-top"> </i>';
     
     var level = get_level(headers[0]),
       this_level,
-      html = settings.text + " <"+settings.listType+">";
+      html = settings.title + " <"+settings.listType+">";
     headers.on('click', function() {
-      if (!settings.noBackToTopLinks) window.location.hash = this.id
+      if (!settings.noBackToTopLinks) {
+        window.location.hash = this.id;
+      }
     })
     .addClass('clickable-header')
     .each(function(_, header) {

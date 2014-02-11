@@ -8,7 +8,7 @@ The script requires the library jQuery. First, reference `toc.js` in templates w
 
 ```html
 <script type="text/javascript">
-    $().toc();
+    $('.toc').toc();
 </script>
 ```
 
