@@ -4,20 +4,25 @@ A simple JavaScript table of contents generator. Works well with [jekyll](https:
 
 ## Usage
 
-The script requires the library jQuery. First, reference `toc.js` in templates where you would like to add the table of contents, and just add this script:
-
-```html
-<script type="text/javascript">
-    $('.toc').toc();
-</script>
-```
-
-Then add this tag wherever you want your table of contents to appear:
+The script requires the library jQuery. First, reference `toc.js` in templates where you would like to add the table of content.
+Then, create an HTML element wherever you want your table of contents to appear:
 
 ```html
 <div class="toc"></div>
 ```
-The script works by looking for headers (h1, h2, h3, h4, h5, h6) which have an `id`. An id is added automatically if you're using Jekyll and [Markdown](http://daringfireball.net/projects/markdown/syntax#header).
+
+Finally, call the `toc()` function when the DOM is ready:
+
+```html
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.toc').toc();
+});
+</script>
+```
+
+The script works by looking for headers (h1, h2, h3, h4, h5, h6) which have an `id`.
+An id is added automatically if you're using Jekyll and [Markdown](http://daringfireball.net/projects/markdown/syntax#header).
 
 Note: If you use redcarpet, you need to have the option `with_toc_data` in order to add HTML anchors to each header:
 
@@ -49,7 +54,7 @@ By default the table of contents is rendered as an `<ol>`, so you can change the
 However you can use the `<ul>` tag, using the `listType` option:
 
 ```javascript
-  $().toc({ listType: 'ul' });
+    $('.toc').toc({ listType: 'ul' });
 ```
 
 The script also adds an `<i>` tag next to each header. This uses the class `icon-arrow-up`, which if you're using [Bootstrap](http://twitter.github.io/bootstrap/), will be an arrow pointing to the top of the page.
@@ -58,7 +63,7 @@ Clicking that arrow will scroll you to the top, while clicking on a header will 
 If you don't want this feature, add this setting:
 
 ```javascript
-  $().toc({ noBackToTopLinks: true });
+    $('.toc').toc({ noBackToTopLinks: true });
 ```
 
 Otherwise, I suggest you use CSS that looks something like this so the icon and header are aligned nicely.
@@ -82,7 +87,7 @@ Otherwise, I suggest you use CSS that looks something like this so the icon and 
 Finally, you can also change the way the toc is displayed. If you want to deactivate the default effect, set it up like this:
 
 ```javascript
-  $().toc({ showSpeed: 0 });
+    $('.toc').toc({ showSpeed: 0 });
 ```
 
 ## Copyright
