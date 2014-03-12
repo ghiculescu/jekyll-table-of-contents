@@ -5,7 +5,8 @@
       noBackToTopLinks: false,
       title: '<i>Jump to...</i>',
       listType: 'ol', // values: [ol|ul]
-      showSpeed: 'slow'
+      showEffect: 'show', // values: [show|slideDown|fadeIn|none]
+      showSpeed: 'slow' // set to 0 to deactivate effect
     },
     settings = $.extend(defaults, options);
     
@@ -16,6 +17,17 @@
     if (!headers.length || headers.length < 3 || !output.length) {
       return;
     }
+    
+    if (0 === settings.showSpeed) {
+      settings.showEffect = 'none';
+    }
+    
+    var render = {
+      show: function() { output.hide().html(html).show(settings.showSpeed); },
+      slideDown: function() { output.hide().html(html).slideDown(settings.showSpeed); },
+      fadeIn: function() { output.hide().html(html).fadeIn(settings.showSpeed); },
+      none: function() { output.html(html); }
+    };
     
     var get_level = function(ele) { return parseInt(ele.nodeName.replace("H", ""), 10); }
     var highest_level = headers.map(function(_, ele) { return get_level(ele); }).get().sort()[0];
@@ -50,10 +62,7 @@
         window.location.hash = '';
       });
     }
-    if (0 !== settings.showSpeed) {
-      output.hide().html(html).show(settings.showSpeed);
-    } else {
-      output.html(html);
-    }
+    
+    render[settings.showEffect]();
   };
 })(jQuery);
