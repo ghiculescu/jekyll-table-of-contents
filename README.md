@@ -66,7 +66,7 @@ If you don't want this feature, add this setting:
     $('.toc').toc({ noBackToTopLinks: true });
 ```
 
-Otherwise, I suggest you use CSS that looks something like this so the icon and header are aligned nicely.
+Otherwise, you can use the stylesheet below to have the icon and the header aligned nicely:
 
 ```css
 .clickable-header {
@@ -84,7 +84,13 @@ Otherwise, I suggest you use CSS that looks something like this so the icon and 
 }
 ```
 
-Finally, you can also change the way the toc is displayed. If you want to deactivate the default effect, set it up like this:
+Finally, you can also change the way the toc is displayed, choosing a `slideShow` or a `fadeIn` effect instead of `show`:
+
+```javascript
+    $('.toc').toc({ showEffect: 'slideDown' });
+```
+
+Otherwise, to deactivate the effect, set it up like this:
 
 ```javascript
     $('.toc').toc({ showSpeed: 0 });
