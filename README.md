@@ -32,6 +32,14 @@ redcarpet:
     extensions: [with_toc_data]
 ```
 
+Note: If you use rdiscount, you use the specific version with the related option in order to generate the TOC:
+```yaml
+markdown: rdiscount
+rdiscount:
+    extensions:
+      - generate_toc
+```
+
 The table of contents automatically handles nesting of headers. For example, this Markdown post:
 
     ## Title
