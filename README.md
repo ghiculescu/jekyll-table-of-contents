@@ -32,7 +32,7 @@ redcarpet:
     extensions: [with_toc_data]
 ```
 
-Note: If you use rdiscount, you use the specific version with the related option in order to generate the TOC:
+Note: If you use rdiscount, enable the following option in order to generate the TOC:
 ```yaml
 markdown: rdiscount
 rdiscount:
