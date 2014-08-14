@@ -32,6 +32,25 @@ redcarpet:
     extensions: [with_toc_data]
 ```
 
+Note: If you use rdiscount, enable the following option in order to generate the TOC:
+```yaml
+markdown: rdiscount
+rdiscount:
+    extensions:
+      - generate_toc
+```
+*You may have to modify slighty the toc.js file to target specifically the main content of the page to generate properly the TOC. For example:*
+```js
+// line 13
+var headers = $('h1, h2, h3, h4, h5, h6').filter(function() {
+```
+to
+```js
+// line 13
+var headers = $('.content h1, .content h2, .content h3, .content h4, .content h5, .content h6').filter(function() {
+```
+*In that way it shouldn't check the titles located elsewhere in the page.*
+
 The table of contents automatically handles nesting of headers. For example, this Markdown post:
 
     ## Title

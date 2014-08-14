@@ -9,30 +9,33 @@
       showSpeed: 'slow' // set to 0 to deactivate effect
     },
     settings = $.extend(defaults, options);
-    
+
     var headers = $('h1, h2, h3, h4, h5, h6').filter(function() {
       // get all headers with an ID
+      if (!this.id) {
+        this.id = $(this).attr( "id", $(this).prev().attr( "name" ).replace(/\./g, "-") );
+      }
       return this.id;
     }), output = $(this);
     if (!headers.length || headers.length < 3 || !output.length) {
       return;
     }
-    
+
     if (0 === settings.showSpeed) {
       settings.showEffect = 'none';
     }
-    
+
     var render = {
       show: function() { output.hide().html(html).show(settings.showSpeed); },
       slideDown: function() { output.hide().html(html).slideDown(settings.showSpeed); },
       fadeIn: function() { output.hide().html(html).fadeIn(settings.showSpeed); },
       none: function() { output.html(html); }
     };
-    
+
     var get_level = function(ele) { return parseInt(ele.nodeName.replace("H", ""), 10); }
     var highest_level = headers.map(function(_, ele) { return get_level(ele); }).get().sort()[0];
     var return_to_top = '<i class="icon-arrow-up back-to-top"> </i>';
-    
+
     var level = get_level(headers[0]),
       this_level,
       html = settings.title + " <"+settings.listType+">";
@@ -70,7 +73,7 @@
         window.location.hash = '';
       });
     }
-    
+
     render[settings.showEffect]();
   };
 })(jQuery);
