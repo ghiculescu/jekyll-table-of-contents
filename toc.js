@@ -4,6 +4,7 @@
     var defaults = {
       noBackToTopLinks: false,
       title: '<i>Jump to...</i>',
+      minimumHeaders: 3,
       listType: 'ol', // values: [ol|ul]
       showEffect: 'show', // values: [show|slideDown|fadeIn|none]
       showSpeed: 'slow' // set to 0 to deactivate effect
@@ -17,7 +18,7 @@
       }
       return this.id;
     }), output = $(this);
-    if (!headers.length || headers.length < 3 || !output.length) {
+    if (!headers.length || headers.length < settings.minimumHeaders || !output.length) {
       return;
     }
 

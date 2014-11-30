@@ -103,6 +103,13 @@ Otherwise, you can use the stylesheet below to have the icon and the header alig
 }
 ```
 
+By default the table of content is displayed when at least 3 headers are found. 
+You can customize the minimum number of headers required with this setting:
+
+```javascript
+    $('.toc').toc({ minimumHeaders: 2 });
+```
+
 Finally, you can also change the way the toc is displayed, choosing a `slideShow` or a `fadeIn` effect instead of `show`:
 
 ```javascript
