@@ -39,15 +39,9 @@ rdiscount:
     extensions:
       - generate_toc
 ```
-*You may have to modify slighty the toc.js file to target specifically the main content of the page to generate properly the TOC. For example:*
-```js
-// line 13
-var headers = $('h1, h2, h3, h4, h5, h6').filter(function() {
-```
-to
-```js
-// line 13
-var headers = $('.content h1, .content h2, .content h3, .content h4, .content h5, .content h6').filter(function() {
+*You may have to add the setting `headers` to target specifically the main content of the page to generate properly the TOC. For example:*
+```javascript
+    $('.toc').toc({ headers: '.content h1, .content h2, .content h3, .content h4, .content h5, .content h6' });
 ```
 *In that way it shouldn't check the titles located elsewhere in the page.*
 
@@ -108,6 +102,11 @@ You can customize the minimum number of headers required with this setting:
 
 ```javascript
     $('.toc').toc({ minimumHeaders: 2 });
+```
+
+And you can also select which headers you want to link to. By default `h1, h2, h3, h4, h5, h6` are displayed, but setting the `headers` setting lets you tweak it:
+```javascript
+    $('.toc').toc({ headers: 'h3, h4, h5, h6' });
 ```
 
 Finally, you can also change the way the toc is displayed, choosing a `slideShow` or a `fadeIn` effect instead of `show`:
