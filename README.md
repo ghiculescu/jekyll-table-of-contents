@@ -127,6 +127,18 @@ Otherwise, to deactivate the effect, set it up like this:
 $('#toc').toc({ showSpeed: 0 });
 ```
 
+
+#### List And Item Styling
+You can specify additional CSS classes for both lists (`<ul>, <ol>`) and items (`<li>`):
+
+```javascript
+$('#toc').toc({ classes: { list: 'lorem ipsum',
+                           item: 'dolor sit amet'
+                         }
+              });
+```
+
+
 ## Copyright
 
 See LICENSE.txt for further details. But basically, do what you like with this.
