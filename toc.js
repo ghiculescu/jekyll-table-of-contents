@@ -20,9 +20,10 @@
         return '%' + c.charCodeAt(0).toString(16);
       });
     }
-    
+
     function createLink (header) {
-      return "<a href='#" + fixedEncodeURIComponent(header.id) + "'>" + header.innerHTML + "</a>";
+      var innerText = (header.textContent === undefined) ? header.innerText : header.textContent;
+      return "<a href='#" + fixedEncodeURIComponent(header.id) + "'>" + innerText + "</a>";
     }
 
     var headers = $(settings.headers).filter(function() {
