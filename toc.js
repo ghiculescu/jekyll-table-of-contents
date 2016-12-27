@@ -71,7 +71,7 @@
       if (this_level === level) // same level as before; same indenting
         html += "<li class=\"" + settings.classes.item + "\">" + createLink(header);
       else if (this_level <= level){ // higher level than before; end parent ol
-        for(i = this_level; i < level; i++) {
+        for(var i = this_level; i < level; i++) {
           html += "</li></"+settings.listType+">"
         }
         html += "<li class=\"" + settings.classes.item + "\">" + createLink(header);
