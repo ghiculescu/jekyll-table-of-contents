@@ -10,7 +10,8 @@
       showEffect: 'show', // values: [show|slideDown|fadeIn|none]
       showSpeed: 'slow', // set to 0 to deactivate effect
       classes: { list: '',
-                 item: ''
+                 item: '',
+                 link: ''
                }
     },
     settings = $.extend(defaults, options);
@@ -23,7 +24,7 @@
 
     function createLink (header) {
       var innerText = (header.textContent === undefined) ? header.innerText : header.textContent;
-      return "<a href='#" + fixedEncodeURIComponent(header.id) + "'>" + innerText + "</a>";
+      return "<a class='"+settings.classes.link+"' href='#" + fixedEncodeURIComponent(header.id) + "'>" + innerText + "</a>";
     }
 
     var headers = $(settings.headers).filter(function() {
