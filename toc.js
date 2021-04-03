@@ -5,6 +5,7 @@
       noBackToTopLinks: false,
       title: '<i>Jump to...</i>',
       minimumHeaders: 3,
+      container: null,
       headers: 'h1, h2, h3, h4, h5, h6',
       listType: 'ol', // values: [ol|ul]
       showEffect: 'show', // values: [show|slideDown|fadeIn|none]
@@ -27,7 +28,17 @@
       return "<a class='"+settings.classes.link+"' href='#" + fixedEncodeURIComponent(header.id) + "'>" + innerText + "</a>";
     }
 
-    var headers = $(settings.headers).filter(function() {
+    var container =
+          settings.container ?
+                $(this).closest(settings.container) :
+                $(this);
+
+    if (!container) {
+      console.error("Couldn't find '.post' ancestor of #toc");
+      return;
+    }
+
+    var headers = container.find(settings.headers).filter(function() {
       // get all headers with an ID
       var previousSiblingName = $(this).prev().attr( "name" );
       if (!this.id && previousSiblingName) {
